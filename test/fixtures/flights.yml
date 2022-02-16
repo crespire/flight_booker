@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  depart_time: 2022-02-16 14:48:06
+  flight_duration: 
+  origin_airport_id: 
+  destination_airport_id: 1
+
+two:
+  name: MyString
+  depart_time: 2022-02-16 14:48:06
+  flight_duration: 
+  origin_airport_id: 
+  destination_airport_id: 1
