@@ -3,7 +3,10 @@ class FlightsController < ApplicationController
 
   # GET /flights or /flights.json
   def index
-    @flights = Flight.all
+    @flights = Flight.all.includes(:origin, :destination)
+    @depart_dates = @flights.collect(&:depart_time).sort.uniq { |date| date.strftime('%F') }
+    @origins = @flights.map(&:origin).uniq.sort.reverse
+    @destinations = @flights.map(&:destination).uniq.sort.reverse
   end
 
   # GET /flights/1 or /flights/1.json
