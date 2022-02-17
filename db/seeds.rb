@@ -19,8 +19,10 @@ puts 'Created 8 airports'
 
 airline_callsigns = %w[AC AS AA DL FX NW SW WS]
 
-50.times do
-  Flight.create(name: "%s-%03d" % [airline_callsigns.sample, rand(1..999)], depart_time: DateTime.now + rand(2..60), flight_duration: rand(43..458.0), origin_airport_id: rand(1..8), destination_airport_id: rand(1..8))
+25.times do
+  (1..8).to_a.each do |i|
+    Flight.create(name: "%s-%03d" % [airline_callsigns.sample, rand(1..999)], depart_time: DateTime.now + rand(100..600), depart_date: Date.today + rand(2..60), flight_duration: rand(43..458.0), origin_airport_id: i, destination_airport_id: rand(1..8))
+  end
 end
 
-puts 'Created 50 flights.'
+puts "Created 25 flights originating from each airport, #{25 * 8} total."

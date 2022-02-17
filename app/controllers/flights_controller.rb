@@ -4,9 +4,13 @@ class FlightsController < ApplicationController
   # GET /flights or /flights.json
   def index
     @flights = Flight.all.includes(:origin, :destination)
-    @depart_dates = @flights.collect(&:depart_time).sort.uniq { |date| date.strftime('%F') }
+    @depart_dates = @flights.collect(&:depart_date).sort.uniq
     @origins = @flights.map(&:origin).uniq.sort.reverse
     @destinations = @flights.map(&:destination).uniq.sort.reverse
+
+    return unless params.present?
+
+    @results = Flight.joins(:origin, :destination).where(origin: { code: params[:origin] }, destination: { code: params[:destination] }).where(depart_date: params[:departure_date])
   end
 
   # GET /flights/1 or /flights/1.json
