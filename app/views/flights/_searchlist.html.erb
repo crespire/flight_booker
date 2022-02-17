@@ -1,0 +1,12 @@
+<p>
+<% if @results.empty? %>
+    Sorry, no matching flights found.
+<% else %>
+    We found <%= @results.length %> matching <%= @results.length > 1 ? 'flights' : 'flight' %> on <%= params[:departure_date] %>.
+    <ul>
+    <% @results.each do |flight| %>
+        <li><strong><%= flight.name %></strong> departing <%= flight.origin.name %> at <%= flight.depart_time.strftime('%r') %>
+    <% end %>
+    </ul>
+<% end %>
+</p>

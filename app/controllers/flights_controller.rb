@@ -3,12 +3,9 @@ class FlightsController < ApplicationController
 
   # GET /flights or /flights.json
   def index
-    @flights = Flight.all.includes(:origin, :destination)
-    @depart_dates = @flights.collect(&:depart_date).sort.uniq
-    @origins = @flights.map(&:origin).uniq.sort.reverse
-    @destinations = @flights.map(&:destination).uniq.sort.reverse
-
-    return unless params.present?
+    @depart_dates = Flight.all.collect(&:depart_date).sort.uniq
+    @airports = Airport.all
+    return unless params[:origin].present?
 
     @results = Flight.joins(:origin, :destination).where(origin: { code: params[:origin] }, destination: { code: params[:destination] }).where(depart_date: params[:departure_date])
   end
