@@ -1,8 +1,8 @@
 <%= form_with url:'/flights', method: :get do |form| %>
     <%= form.label :origin %>
-    <%= form.select :origin, @origins.collect { |port| [ port.name, port.code ] }, { include_blank: 'Select Airport', selected: params[:origin] }, { required: true } %>
+    <%= form.collection_select :origin, @origins, :code, :name, { include_blank: 'Select Airport', selected: params[:origin] }, required: true %>
     <%= form.label :destination %>
-    <%= form.select :destination, @destinations.collect { |port| [ port.name, port.code ] }, { include_blank: 'Select Airport', selected: params[:destination] }, { required: true } %>
+    <%= form.collection_select :destination, @destinations, :code, :name, { include_blank: 'Select Airport', selected: params[:destination] }, required: true %>
     <%= form.label :passengers %>
     <%= form.select :passengers, (1..4).to_a %>
     <%= form.label :departure_date %>
