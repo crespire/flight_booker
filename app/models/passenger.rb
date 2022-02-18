@@ -3,4 +3,5 @@ class Passenger < ApplicationRecord
   validates :email, format: { with: /\A(\S+)@(.+)\.(\S+)\z/, message: 'format invalid' }, presence: true
 
   belongs_to :booking
+  belongs_to :flight, through: :booking
 end
