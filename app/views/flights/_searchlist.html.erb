@@ -2,11 +2,13 @@
 <% if @results.empty? %>
     Sorry, no matching flights found.
 <% else %>
-    We found <%= @results.length %> matching <%= @results.length > 1 ? 'flights' : 'flight' %> on <%= params[:departure_date] %>.
-    <ul>
-    <% @results.each do |flight| %>
-        <li><strong><%= flight.name %></strong> departing <%= flight.origin.name %> at <%= flight.depart_time.strftime('%r') %>
+    We found <%= @results.length %> matching <%= @results.length > 1 ? 'flights' : 'flight' %> departing on <%= params[:departure_date] %>.
+    <%= form_with url:'/bookings/new', method: :get do |form| %>
+        <%= form.label :flight %>
+        <%= form.collection_select :flight_id, @results, :id, :display_time_only, { include_blank: 'Select a Flight' }, required: true %>
+        <%= form.hidden_field :num_tickets, value: params[:passengers] %>
+
+        <%= form.submit "Book this flight!" %>
     <% end %>
-    </ul>
 <% end %>
 </p>
