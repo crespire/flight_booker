@@ -1,4 +1,10 @@
 class Flight < ApplicationRecord
+  validates :name, presence: true
+  validates :depart_time, presence: true
+  validates :depart_date, presence: true
+  validates :origin_airport_id, presence: true
+  validates :destination_airport_id, presence: true
+
   belongs_to :destination, class_name: 'Airport',
                            foreign_key: 'destination_airport_id'
 
