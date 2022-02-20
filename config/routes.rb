@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root to: 'flights#index'
   get '/airports', to: redirect('/flights')
+  get '/bookings/new', to: 'bookings#new'
+  post '/bookings', to: 'bookings#create'
 
   resources :flights
   # resources :airports
