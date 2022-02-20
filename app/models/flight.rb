@@ -14,7 +14,7 @@ class Flight < ApplicationRecord
   has_many :bookings
   has_many :passengers, through: :bookings
 
-  def display_time_only
+  def display_depart_time_only
     depart_time.strftime('%r')
   end
 end
