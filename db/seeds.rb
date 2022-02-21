@@ -34,4 +34,4 @@ Flight.all.each do |flight|
   2.times { booking.passengers.create(flight_id: flight.id, name: 'Jim', email: 'test@test.com') }
 end
 
-puts "Created a booking with 2 passengers for all flights."
+puts 'Created a booking with 2 passengers for all flights.'
