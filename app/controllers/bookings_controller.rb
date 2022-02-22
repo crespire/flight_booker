@@ -8,9 +8,6 @@ class BookingsController < ApplicationController
   def create
     @flight = Flight.find(booking_params[:flight_id])
     @booking = @flight.bookings.new(booking_params)
-    @booking.passengers.each do |passenger|
-      passenger.flight_id = @booking.flight_id
-    end
 
     if @booking.save
       redirect_to :root, notice: 'Booking created!'
