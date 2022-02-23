@@ -11,13 +11,14 @@ class FlightsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_flight
-      @flight = Flight.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def flight_params
-      params.require(:flight).permit(:name, :depart_time, :flight_duration, :origin_airport_id, :destination_airport_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_flight
+    @flight = Flight.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def flight_params
+    params.require(:flight).permit(:name, :depart_time, :flight_duration, :origin_airport_id, :destination_airport_id)
+  end
 end
