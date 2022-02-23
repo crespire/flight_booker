@@ -1,6 +1,6 @@
 <p><%= [@flight.name, @flight.origin.name, @flight.destination.name, @flight.depart_date] %></p>
 
-<%= form_with model: @booking do |form| %>
+<%= form_with model: @booking, method: :post do |form| %>
     <% if @booking.errors.any? %>
         <div id="error_explanation">
         <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this booking from being saved:</h2>

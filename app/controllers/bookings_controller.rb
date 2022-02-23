@@ -10,10 +10,14 @@ class BookingsController < ApplicationController
     @booking = @flight.bookings.new(booking_params)
 
     if @booking.save
-      redirect_to :root, notice: 'Booking created!'
+      redirect_to booking_path(@booking), notice: 'Booking created!'
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def show
+    @booking = Booking.includes(:flight, flight: :destination).find(params[:id])
   end
 
   private
