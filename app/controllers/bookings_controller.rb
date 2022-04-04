@@ -11,6 +11,9 @@ class BookingsController < ApplicationController
 
     if @booking.save
       redirect_to booking_path(@booking), notice: 'Booking created!'
+      @booking.passengers.each do |passenger|
+        PassengerMailer.confirm_booking(passenger).deliver_later
+      end
     else
       render :new, status: :unprocessable_entity
     end
